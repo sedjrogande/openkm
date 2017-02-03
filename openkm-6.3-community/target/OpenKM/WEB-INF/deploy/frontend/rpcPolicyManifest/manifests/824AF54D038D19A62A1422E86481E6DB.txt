@@ -1,0 +1,2 @@
+serviceClass: com.openkm.frontend.client.service.OKMNotifyService
+path: C92D020EFDC391E612EED7BA0A17AF30.gwt.rpc

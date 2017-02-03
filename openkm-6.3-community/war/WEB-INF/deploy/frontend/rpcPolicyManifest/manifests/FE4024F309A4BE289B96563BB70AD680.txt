@@ -1,0 +1,2 @@
+serviceClass: com.openkm.frontend.client.service.OKMKeyValueService
+path: 2EFF8B3E997A2D175A2793D4A03451C8.gwt.rpc

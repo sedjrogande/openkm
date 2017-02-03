@@ -1,0 +1,30 @@
+# Module frontend
+# RPC service class, partial path of RPC policy file
+com.openkm.extension.frontend.client.service.OKMDropboxService, 56E481FF3AF17592F2B8CFAEC9D25DAB.gwt.rpc
+com.openkm.frontend.client.service.OKMLanguageService, 023456153A3296E763914BED85915594.gwt.rpc
+com.openkm.frontend.client.service.OKMThesaurusService, 99E5C9EF548AB0777801D5D035C1C64A.gwt.rpc
+com.openkm.frontend.client.service.OKMWorkflowService, 0967239A1F98A0AA9C73BBFFDB6A9DB7.gwt.rpc
+com.openkm.frontend.client.service.OKMRepositoryService, 2A8F2965B1652A43FC1F901635725E0B.gwt.rpc
+com.openkm.frontend.client.service.OKMMassiveService, 35ECAFFDA8E3DA6FE8C1AA4FB7B508BC.gwt.rpc
+com.openkm.frontend.client.service.OKMPropertyService, 3FD220B22214EDBE949D670E07594EC6.gwt.rpc
+com.openkm.extension.frontend.client.service.OKMZohoService, 750D5D54826CFD71DF74F7EBCD73D157.gwt.rpc
+com.openkm.frontend.client.service.OKMTestService, F23E98CBB5C198A8B41CB24023C2A281.gwt.rpc
+com.openkm.frontend.client.service.OKMMailService, B5A4C010C7F60066370E6B1AC0D570F9.gwt.rpc
+com.openkm.extension.frontend.client.service.OKMOpenMeetingsService, 2FE109528F896EB99E42A307C7C4CDB5.gwt.rpc
+com.openkm.frontend.client.service.OKMFolderService, A331EDE1030511F38658AFFFBCC0D3FB.gwt.rpc
+com.openkm.frontend.client.service.OKMNotifyService, C92D020EFDC391E612EED7BA0A17AF30.gwt.rpc
+com.openkm.frontend.client.service.OKMSearchService, 5F1EACAE21C6D439D847608BFFC00598.gwt.rpc
+com.openkm.frontend.client.service.OKMChatService, D7EB054BE666DFFF9B18094F094C8A41.gwt.rpc
+com.openkm.frontend.client.service.OKMGeneralService, 3733F78EEABD9C68FE0F5DB03A6C5A6D.gwt.rpc
+com.openkm.frontend.client.service.OKMAuthService, 7DFD0D98AA0631E51A67345927A7B6CC.gwt.rpc
+com.openkm.frontend.client.service.OKMDocumentService, 3567AA500A9040486A7B80A90BCF1D4F.gwt.rpc
+com.openkm.frontend.client.service.OKMUserConfigService, 88786BA5F99D5FDAC17B1EA23BF38F9A.gwt.rpc
+com.openkm.frontend.client.service.OKMDashboardService, 7706FBF6BF81FA3FAE5A043BB4A08EB4.gwt.rpc
+com.openkm.frontend.client.service.OKMNoteService, 685FF4348820DF2F69B9FE046167458D.gwt.rpc
+com.openkm.frontend.client.service.OKMWorkspaceService, 1B32D99D1E311A39A7921BEE96A870DA.gwt.rpc
+com.openkm.frontend.client.service.OKMUINotificationService, E622F2F6E6A91E16CD8E24035B2A8C69.gwt.rpc
+com.openkm.frontend.client.service.OKMPropertyGroupService, 96B7B2BCB1D1ECF643800BBA8980D49B.gwt.rpc
+com.openkm.frontend.client.service.OKMBookmarkService, 89FA6C45543B9093402C625A0A0E38DC.gwt.rpc
+com.openkm.frontend.client.service.OKMPaginationService, 0D31AF716DA190EB9DF83177211BB8A0.gwt.rpc
+com.openkm.extension.frontend.client.service.OKMMacrosService, 709980694B843A76D38ACC8CEE8DB05A.gwt.rpc
+com.openkm.frontend.client.service.OKMKeyValueService, 2EFF8B3E997A2D175A2793D4A03451C8.gwt.rpc

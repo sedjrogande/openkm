@@ -1,0 +1,2 @@
+serviceClass: com.openkm.extension.frontend.client.service.OKMZohoService
+path: 750D5D54826CFD71DF74F7EBCD73D157.gwt.rpc

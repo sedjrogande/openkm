@@ -1,0 +1,2 @@
+serviceClass: com.openkm.frontend.client.service.OKMFolderService
+path: A331EDE1030511F38658AFFFBCC0D3FB.gwt.rpc

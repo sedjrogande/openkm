@@ -1,0 +1,2 @@
+serviceClass: com.openkm.frontend.client.service.OKMBookmarkService
+path: 89FA6C45543B9093402C625A0A0E38DC.gwt.rpc

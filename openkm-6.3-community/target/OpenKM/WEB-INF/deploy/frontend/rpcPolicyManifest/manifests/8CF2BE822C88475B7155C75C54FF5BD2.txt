@@ -1,0 +1,2 @@
+serviceClass: com.openkm.frontend.client.service.OKMChatService
+path: D7EB054BE666DFFF9B18094F094C8A41.gwt.rpc

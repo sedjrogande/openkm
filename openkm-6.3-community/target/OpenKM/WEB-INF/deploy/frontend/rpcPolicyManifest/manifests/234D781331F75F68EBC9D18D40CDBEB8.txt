@@ -1,0 +1,2 @@
+serviceClass: com.openkm.frontend.client.service.OKMLanguageService
+path: 023456153A3296E763914BED85915594.gwt.rpc

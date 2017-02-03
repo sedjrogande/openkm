@@ -1,0 +1,2 @@
+serviceClass: com.openkm.frontend.client.service.OKMUserConfigService
+path: 88786BA5F99D5FDAC17B1EA23BF38F9A.gwt.rpc

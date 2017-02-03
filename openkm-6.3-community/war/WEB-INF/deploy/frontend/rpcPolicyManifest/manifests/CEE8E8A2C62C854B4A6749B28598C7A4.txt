@@ -1,0 +1,2 @@
+serviceClass: com.openkm.frontend.client.service.OKMUINotificationService
+path: E622F2F6E6A91E16CD8E24035B2A8C69.gwt.rpc

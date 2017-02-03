@@ -1,0 +1,2 @@
+serviceClass: com.openkm.extension.frontend.client.service.OKMOpenMeetingsService
+path: 2FE109528F896EB99E42A307C7C4CDB5.gwt.rpc

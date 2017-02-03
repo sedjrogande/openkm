@@ -1,0 +1,2 @@
+serviceClass: com.openkm.extension.frontend.client.service.OKMMacrosService
+path: 709980694B843A76D38ACC8CEE8DB05A.gwt.rpc

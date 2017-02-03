@@ -1,0 +1,2 @@
+serviceClass: com.openkm.frontend.client.service.OKMWorkflowService
+path: 0967239A1F98A0AA9C73BBFFDB6A9DB7.gwt.rpc

@@ -1,0 +1,2 @@
+serviceClass: com.openkm.frontend.client.service.OKMNoteService
+path: 685FF4348820DF2F69B9FE046167458D.gwt.rpc

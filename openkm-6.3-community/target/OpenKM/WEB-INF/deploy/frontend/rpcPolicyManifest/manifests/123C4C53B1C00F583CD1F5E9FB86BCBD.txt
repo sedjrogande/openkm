@@ -1,0 +1,2 @@
+serviceClass: com.openkm.extension.frontend.client.service.OKMDropboxService
+path: 56E481FF3AF17592F2B8CFAEC9D25DAB.gwt.rpc

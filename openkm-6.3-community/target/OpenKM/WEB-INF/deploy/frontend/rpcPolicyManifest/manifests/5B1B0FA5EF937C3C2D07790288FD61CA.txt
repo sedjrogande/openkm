@@ -1,0 +1,2 @@
+serviceClass: com.openkm.frontend.client.service.OKMPropertyService
+path: 3FD220B22214EDBE949D670E07594EC6.gwt.rpc

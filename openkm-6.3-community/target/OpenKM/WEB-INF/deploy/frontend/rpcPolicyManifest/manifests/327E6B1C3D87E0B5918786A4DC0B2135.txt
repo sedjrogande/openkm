@@ -1,0 +1,2 @@
+serviceClass: com.openkm.frontend.client.service.OKMThesaurusService
+path: 99E5C9EF548AB0777801D5D035C1C64A.gwt.rpc
