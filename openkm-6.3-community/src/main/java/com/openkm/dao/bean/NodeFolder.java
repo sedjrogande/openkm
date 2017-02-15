@@ -43,12 +43,24 @@ public class NodeFolder extends NodeBase {
 	@Field(index = Index.TOKENIZED, store = Store.YES)
 	private String description;
 	
+	@Column(name = "NBS_CCM_CODE", length = 64)
+	@Field(index = Index.UN_TOKENIZED, store = Store.YES)
+	private String ccmCode;
+	
 	public String getDescription() {
 		return description;
 	}
 	
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	
+	public String getCcmCode() {
+		return ccmCode;
+	}
+	
+	public void setCode(String ccmCode) {
+		this.ccmCode = ccmCode;
 	}
 	
 	public String toString() {
@@ -60,6 +72,7 @@ public class NodeFolder extends NodeBase {
 		sb.append(", parent=").append(parent);
 		sb.append(", author=").append(author);
 		sb.append(", name=").append(name);
+		sb.append(", ccmCode=").append(ccmCode);
 		sb.append(", description=").append(description);
 		sb.append(", subscriptors=").append(subscriptors);
 		sb.append(", keywords=").append(keywords);

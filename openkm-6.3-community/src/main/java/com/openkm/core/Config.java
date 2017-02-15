@@ -306,6 +306,10 @@ public class Config {
 	public static final String PROPERTY_UNIT_TESTING_PASSWORD = "unit.testing.password";
 	public static final String PROPERTY_UNIT_TESTING_FOLDER = "unit.testing.folder";
 	
+	// Injection
+	public static final String PROPERTY_INJECTION_DIR = "migration.dir";
+	public static final String PROPERTY_BACKUP_DIR = "migration_backup.dir";
+	public static final String PROPERTY_LOGS_DIR = "migration_log.dir";
 	/**
 	 * Default values
 	 */
@@ -547,6 +551,11 @@ public class Config {
 	public static String UNIT_TESTING_USER = "okmAdmin";
 	public static String UNIT_TESTING_PASSWORD = "admin";
 	public static String UNIT_TESTING_FOLDER = "/okm:root/okmTesting";
+	
+	// Injection
+	public static String INJECTION_DIR = "C:\\openkm";
+	public static String BACKUP_DIR = "C:\\backup";
+	public static String LOGS_DIR = "C:\\log";
 	
 	// Misc
 	public static int SESSION_EXPIRATION = 1800; // 30 mins (session.getMaxInactiveInterval())
@@ -1016,6 +1025,11 @@ public class Config {
 			UNIT_TESTING_USER = ConfigDAO.getString(PROPERTY_UNIT_TESTING_USER, UNIT_TESTING_USER);
 			UNIT_TESTING_PASSWORD = ConfigDAO.getString(PROPERTY_UNIT_TESTING_PASSWORD, UNIT_TESTING_PASSWORD);
 			UNIT_TESTING_FOLDER = ConfigDAO.getString(PROPERTY_UNIT_TESTING_FOLDER, UNIT_TESTING_FOLDER);
+			
+			// Injection
+			INJECTION_DIR = ConfigDAO.getString(PROPERTY_INJECTION_DIR, INJECTION_DIR);
+			BACKUP_DIR = ConfigDAO.getString(PROPERTY_BACKUP_DIR, BACKUP_DIR);
+			LOGS_DIR = ConfigDAO.getString(PROPERTY_LOGS_DIR, LOGS_DIR);
 			
 			for (Entry<String, String> entry : values.entrySet()) {
 				log.info("RELOAD - {}={}", entry.getKey(), entry.getValue());
