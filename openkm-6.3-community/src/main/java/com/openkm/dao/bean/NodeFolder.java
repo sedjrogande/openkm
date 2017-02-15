@@ -59,7 +59,7 @@ public class NodeFolder extends NodeBase {
 		return ccmCode;
 	}
 	
-	public void setCode(String ccmCode) {
+	public void setCcmCode(String ccmCode) {
 		this.ccmCode = ccmCode;
 	}
 	

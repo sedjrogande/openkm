@@ -85,6 +85,16 @@ public class BaseFolderModule {
 		folderNode.setContext(parentFolder.getContext());
 		folderNode.setParent(parentFolder.getUuid());
 		folderNode.setAuthor(user);
+		
+		// Modified by Herve AHOUANTCHEDE 15/02/2017
+		// Check if the folder name entered contains the characters () then 
+		// Split the folder name in order to retrieve the keywork
+		if (name.contains("(") && name.contains(")")){
+			String key = name.substring(name.indexOf("(") + 1, name.indexOf(")"));
+			name = name.substring(0, name.indexOf("("));
+			folderNode.setCcmCode(key);
+		}
+		
 		folderNode.setName(name);
 		folderNode.setCreated(created != null ? created : Calendar.getInstance());
 		

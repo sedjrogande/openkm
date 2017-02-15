@@ -410,6 +410,16 @@ public class NodeFolderDAO {
 			// Check for same folder name in same parent
 			NodeBaseDAO.getInstance().checkItemExistence(session, nFld.getParent(), newName);
 			
+			// Modified by Herve AHOUANTCHEDE 15/02/2017
+			// Check if the folder name entered contains the characters () then 
+			// Split the folder name in order to retrieve the keywork
+			if (newName.contains("(") && newName.contains(")")){
+				String key = newName.substring(newName.indexOf("(") + 1, newName.indexOf(")"));
+				newName = newName.substring(0, newName.indexOf("("));
+				nFld.setCcmCode(key);
+			}
+			
+			
 			nFld.setName(newName);
 			
 			if (Config.STORE_NODE_PATH) {
