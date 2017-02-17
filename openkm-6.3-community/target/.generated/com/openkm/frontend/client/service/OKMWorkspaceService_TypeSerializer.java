@@ -60,7 +60,7 @@ public class OKMWorkspaceService_TypeSerializer extends com.google.gwt.user.clie
         @com.openkm.frontend.client.bean.GWTAvailableOption_FieldSerializer::serialize(Lcom/google/gwt/user/client/rpc/SerializationStreamWriter;Lcom/openkm/frontend/client/bean/GWTAvailableOption;)
       ];
     
-    result["com.openkm.frontend.client.bean.GWTFolder/3981557553"] = [
+    result["com.openkm.frontend.client.bean.GWTFolder/1904246720"] = [
         @com.openkm.frontend.client.bean.GWTFolder_FieldSerializer::instantiate(Lcom/google/gwt/user/client/rpc/SerializationStreamReader;),
         @com.openkm.frontend.client.bean.GWTFolder_FieldSerializer::deserialize(Lcom/google/gwt/user/client/rpc/SerializationStreamReader;Lcom/openkm/frontend/client/bean/GWTFolder;),
         @com.openkm.frontend.client.bean.GWTFolder_FieldSerializer::serialize(Lcom/google/gwt/user/client/rpc/SerializationStreamWriter;Lcom/openkm/frontend/client/bean/GWTFolder;)
@@ -469,7 +469,7 @@ public class OKMWorkspaceService_TypeSerializer extends com.google.gwt.user.clie
     result[@com.google.gwt.core.client.impl.Impl::getHashCode(Ljava/lang/Object;)(@com.openkm.frontend.client.OKMException::class)] = "com.openkm.frontend.client.OKMException/1351513842";
     result[@com.google.gwt.core.client.impl.Impl::getHashCode(Ljava/lang/Object;)(@com.openkm.frontend.client.bean.GWTAppVersion::class)] = "com.openkm.frontend.client.bean.GWTAppVersion/1901889346";
     result[@com.google.gwt.core.client.impl.Impl::getHashCode(Ljava/lang/Object;)(@com.openkm.frontend.client.bean.GWTAvailableOption::class)] = "com.openkm.frontend.client.bean.GWTAvailableOption/1436246759";
-    result[@com.google.gwt.core.client.impl.Impl::getHashCode(Ljava/lang/Object;)(@com.openkm.frontend.client.bean.GWTFolder::class)] = "com.openkm.frontend.client.bean.GWTFolder/3981557553";
+    result[@com.google.gwt.core.client.impl.Impl::getHashCode(Ljava/lang/Object;)(@com.openkm.frontend.client.bean.GWTFolder::class)] = "com.openkm.frontend.client.bean.GWTFolder/1904246720";
     result[@com.google.gwt.core.client.impl.Impl::getHashCode(Ljava/lang/Object;)(@com.openkm.frontend.client.bean.GWTLanguage::class)] = "com.openkm.frontend.client.bean.GWTLanguage/4163759701";
     result[@com.google.gwt.core.client.impl.Impl::getHashCode(Ljava/lang/Object;)(@com.openkm.frontend.client.bean.GWTLanguage[]::class)] = "[Lcom.openkm.frontend.client.bean.GWTLanguage;/1281629170";
     result[@com.google.gwt.core.client.impl.Impl::getHashCode(Ljava/lang/Object;)(@com.openkm.frontend.client.bean.GWTMimeType::class)] = "com.openkm.frontend.client.bean.GWTMimeType/1396797080";

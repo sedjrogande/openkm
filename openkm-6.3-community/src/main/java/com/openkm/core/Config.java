@@ -306,6 +306,10 @@ public class Config {
 	public static final String PROPERTY_UNIT_TESTING_PASSWORD = "unit.testing.password";
 	public static final String PROPERTY_UNIT_TESTING_FOLDER = "unit.testing.folder";
 	
+	/* 
+	 * Modified by Mariam
+	 * 15/02/2017
+	 */
 	// Injection
 	public static final String PROPERTY_INJECTION_DIR = "migration.dir";
 	public static final String PROPERTY_BACKUP_DIR = "migration_backup.dir";
@@ -552,6 +556,11 @@ public class Config {
 	public static String UNIT_TESTING_PASSWORD = "admin";
 	public static String UNIT_TESTING_FOLDER = "/okm:root/okmTesting";
 	
+	/* 
+	 * Modified by Mariam
+	 * 15/02/2017
+	 * les repertoires d'injection
+	 */
 	// Injection
 	public static String INJECTION_DIR = "C:\\openkm";
 	public static String BACKUP_DIR = "C:\\backup";
@@ -1026,6 +1035,10 @@ public class Config {
 			UNIT_TESTING_PASSWORD = ConfigDAO.getString(PROPERTY_UNIT_TESTING_PASSWORD, UNIT_TESTING_PASSWORD);
 			UNIT_TESTING_FOLDER = ConfigDAO.getString(PROPERTY_UNIT_TESTING_FOLDER, UNIT_TESTING_FOLDER);
 			
+			/* 
+			 * Modified by Mariam
+			 * 15/02/2017
+			 */
 			// Injection
 			INJECTION_DIR = ConfigDAO.getString(PROPERTY_INJECTION_DIR, INJECTION_DIR);
 			BACKUP_DIR = ConfigDAO.getString(PROPERTY_BACKUP_DIR, BACKUP_DIR);

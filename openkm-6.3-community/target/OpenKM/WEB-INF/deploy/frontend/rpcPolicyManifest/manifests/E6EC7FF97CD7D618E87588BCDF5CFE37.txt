@@ -1,2 +1,0 @@
-serviceClass: com.openkm.frontend.client.service.OKMPaginationService
-path: 0D31AF716DA190EB9DF83177211BB8A0.gwt.rpc

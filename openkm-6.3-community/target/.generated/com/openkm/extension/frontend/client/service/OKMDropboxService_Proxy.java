@@ -13,7 +13,7 @@ import com.google.gwt.user.client.rpc.impl.RpcStatsContext;
 
 public class OKMDropboxService_Proxy extends RemoteServiceProxy implements com.openkm.extension.frontend.client.service.OKMDropboxServiceAsync {
   private static final String REMOTE_SERVICE_INTERFACE_NAME = "com.openkm.extension.frontend.client.service.OKMDropboxService";
-  private static final String SERIALIZATION_POLICY ="56E481FF3AF17592F2B8CFAEC9D25DAB";
+  private static final String SERIALIZATION_POLICY ="0B95F75C5232420A196FEC00AC8C6522";
   private static final com.openkm.extension.frontend.client.service.OKMDropboxService_TypeSerializer SERIALIZER = new com.openkm.extension.frontend.client.service.OKMDropboxService_TypeSerializer();
   
   public OKMDropboxService_Proxy() {

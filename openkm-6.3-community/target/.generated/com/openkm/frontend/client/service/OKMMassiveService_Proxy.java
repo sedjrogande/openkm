@@ -13,7 +13,7 @@ import com.google.gwt.user.client.rpc.impl.RpcStatsContext;
 
 public class OKMMassiveService_Proxy extends RemoteServiceProxy implements com.openkm.frontend.client.service.OKMMassiveServiceAsync {
   private static final String REMOTE_SERVICE_INTERFACE_NAME = "com.openkm.frontend.client.service.OKMMassiveService";
-  private static final String SERIALIZATION_POLICY ="35ECAFFDA8E3DA6FE8C1AA4FB7B508BC";
+  private static final String SERIALIZATION_POLICY ="BDEC9E7108378616BAFF30811786B9EF";
   private static final com.openkm.frontend.client.service.OKMMassiveService_TypeSerializer SERIALIZER = new com.openkm.frontend.client.service.OKMMassiveService_TypeSerializer();
   
   public OKMMassiveService_Proxy() {

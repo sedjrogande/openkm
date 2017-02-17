@@ -57,12 +57,12 @@ public class OKMTestService_TypeSerializer extends com.google.gwt.user.client.rp
         @com.openkm.frontend.client.bean.GWTDocument_Array_Rank_1_FieldSerializer::deserialize(Lcom/google/gwt/user/client/rpc/SerializationStreamReader;[Lcom/openkm/frontend/client/bean/GWTDocument;),
       ];
     
-    result["com.openkm.frontend.client.bean.GWTFolder/3981557553"] = [
+    result["com.openkm.frontend.client.bean.GWTFolder/1904246720"] = [
         @com.openkm.frontend.client.bean.GWTFolder_FieldSerializer::instantiate(Lcom/google/gwt/user/client/rpc/SerializationStreamReader;),
         @com.openkm.frontend.client.bean.GWTFolder_FieldSerializer::deserialize(Lcom/google/gwt/user/client/rpc/SerializationStreamReader;Lcom/openkm/frontend/client/bean/GWTFolder;),
       ];
     
-    result["[Lcom.openkm.frontend.client.bean.GWTFolder;/1813072416"] = [
+    result["[Lcom.openkm.frontend.client.bean.GWTFolder;/971330442"] = [
         @com.openkm.frontend.client.bean.GWTFolder_Array_Rank_1_FieldSerializer::instantiate(Lcom/google/gwt/user/client/rpc/SerializationStreamReader;),
         @com.openkm.frontend.client.bean.GWTFolder_Array_Rank_1_FieldSerializer::deserialize(Lcom/google/gwt/user/client/rpc/SerializationStreamReader;[Lcom/openkm/frontend/client/bean/GWTFolder;),
       ];
@@ -287,8 +287,8 @@ public class OKMTestService_TypeSerializer extends com.google.gwt.user.client.rp
     result[@com.google.gwt.core.client.impl.Impl::getHashCode(Ljava/lang/Object;)(@com.google.gwt.user.client.rpc.XsrfToken::class)] = "com.google.gwt.user.client.rpc.XsrfToken/4254043109";
     result[@com.google.gwt.core.client.impl.Impl::getHashCode(Ljava/lang/Object;)(@com.openkm.frontend.client.bean.GWTDocument::class)] = "com.openkm.frontend.client.bean.GWTDocument/2434730680";
     result[@com.google.gwt.core.client.impl.Impl::getHashCode(Ljava/lang/Object;)(@com.openkm.frontend.client.bean.GWTDocument[]::class)] = "[Lcom.openkm.frontend.client.bean.GWTDocument;/3237116720";
-    result[@com.google.gwt.core.client.impl.Impl::getHashCode(Ljava/lang/Object;)(@com.openkm.frontend.client.bean.GWTFolder::class)] = "com.openkm.frontend.client.bean.GWTFolder/3981557553";
-    result[@com.google.gwt.core.client.impl.Impl::getHashCode(Ljava/lang/Object;)(@com.openkm.frontend.client.bean.GWTFolder[]::class)] = "[Lcom.openkm.frontend.client.bean.GWTFolder;/1813072416";
+    result[@com.google.gwt.core.client.impl.Impl::getHashCode(Ljava/lang/Object;)(@com.openkm.frontend.client.bean.GWTFolder::class)] = "com.openkm.frontend.client.bean.GWTFolder/1904246720";
+    result[@com.google.gwt.core.client.impl.Impl::getHashCode(Ljava/lang/Object;)(@com.openkm.frontend.client.bean.GWTFolder[]::class)] = "[Lcom.openkm.frontend.client.bean.GWTFolder;/971330442";
     result[@com.google.gwt.core.client.impl.Impl::getHashCode(Ljava/lang/Object;)(@com.openkm.frontend.client.bean.GWTLockInfo::class)] = "com.openkm.frontend.client.bean.GWTLockInfo/3209849061";
     result[@com.google.gwt.core.client.impl.Impl::getHashCode(Ljava/lang/Object;)(@com.openkm.frontend.client.bean.GWTNote::class)] = "com.openkm.frontend.client.bean.GWTNote/1760296963";
     result[@com.google.gwt.core.client.impl.Impl::getHashCode(Ljava/lang/Object;)(@com.openkm.frontend.client.bean.GWTNote[]::class)] = "[Lcom.openkm.frontend.client.bean.GWTNote;/3777182822";

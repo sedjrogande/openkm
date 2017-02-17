@@ -49,7 +49,15 @@ public class Node implements Serializable {
 	protected Set<String> keywords = new HashSet<String>();
 	protected Set<Folder> categories = new HashSet<Folder>();
 	protected List<Note> notes = new ArrayList<Note>();
-	
+	protected String code;
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
+	}
+
 	public Calendar getCreated() {
 		return created;
 	}

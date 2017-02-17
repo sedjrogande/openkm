@@ -13,7 +13,7 @@ import com.google.gwt.user.client.rpc.impl.RpcStatsContext;
 
 public class OKMTestService_Proxy extends RemoteServiceProxy implements com.openkm.frontend.client.service.OKMTestServiceAsync {
   private static final String REMOTE_SERVICE_INTERFACE_NAME = "com.openkm.frontend.client.service.OKMTestService";
-  private static final String SERIALIZATION_POLICY ="F23E98CBB5C198A8B41CB24023C2A281";
+  private static final String SERIALIZATION_POLICY ="178CC1BA332FDA9356E01EAEDBC1E212";
   private static final com.openkm.frontend.client.service.OKMTestService_TypeSerializer SERIALIZER = new com.openkm.frontend.client.service.OKMTestService_TypeSerializer();
   
   public OKMTestService_Proxy() {

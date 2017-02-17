@@ -25,6 +25,15 @@ public class GWTFolder_FieldSerializer implements com.google.gwt.user.client.rpc
     instance.@com.openkm.frontend.client.bean.GWTFolder::categories = value;
   }-*/;
   
+  private static native java.lang.String getCode(com.openkm.frontend.client.bean.GWTFolder instance) /*-{
+    return instance.@com.openkm.frontend.client.bean.GWTFolder::code;
+  }-*/;
+  
+  private static native void setCode(com.openkm.frontend.client.bean.GWTFolder instance, java.lang.String value) 
+  /*-{
+    instance.@com.openkm.frontend.client.bean.GWTFolder::code = value;
+  }-*/;
+  
   private static native com.openkm.frontend.client.bean.form.GWTFormElement getColumn0(com.openkm.frontend.client.bean.GWTFolder instance) /*-{
     return instance.@com.openkm.frontend.client.bean.GWTFolder::column0;
   }-*/;
@@ -41,6 +50,15 @@ public class GWTFolder_FieldSerializer implements com.google.gwt.user.client.rpc
   private static native void setColumn1(com.openkm.frontend.client.bean.GWTFolder instance, com.openkm.frontend.client.bean.form.GWTFormElement value) 
   /*-{
     instance.@com.openkm.frontend.client.bean.GWTFolder::column1 = value;
+  }-*/;
+  
+  private static native com.openkm.frontend.client.bean.form.GWTFormElement getColumn10(com.openkm.frontend.client.bean.GWTFolder instance) /*-{
+    return instance.@com.openkm.frontend.client.bean.GWTFolder::column10;
+  }-*/;
+  
+  private static native void setColumn10(com.openkm.frontend.client.bean.GWTFolder instance, com.openkm.frontend.client.bean.form.GWTFormElement value) 
+  /*-{
+    instance.@com.openkm.frontend.client.bean.GWTFolder::column10 = value;
   }-*/;
   
   private static native com.openkm.frontend.client.bean.form.GWTFormElement getColumn2(com.openkm.frontend.client.bean.GWTFolder instance) /*-{
@@ -235,8 +253,10 @@ public class GWTFolder_FieldSerializer implements com.google.gwt.user.client.rpc
   public static void deserialize(SerializationStreamReader streamReader, com.openkm.frontend.client.bean.GWTFolder instance) throws SerializationException {
     setAuthor(instance, streamReader.readString());
     setCategories(instance, (java.util.Set) streamReader.readObject());
+    setCode(instance, streamReader.readString());
     setColumn0(instance, (com.openkm.frontend.client.bean.form.GWTFormElement) streamReader.readObject());
     setColumn1(instance, (com.openkm.frontend.client.bean.form.GWTFormElement) streamReader.readObject());
+    setColumn10(instance, (com.openkm.frontend.client.bean.form.GWTFormElement) streamReader.readObject());
     setColumn2(instance, (com.openkm.frontend.client.bean.form.GWTFormElement) streamReader.readObject());
     setColumn3(instance, (com.openkm.frontend.client.bean.form.GWTFormElement) streamReader.readObject());
     setColumn4(instance, (com.openkm.frontend.client.bean.form.GWTFormElement) streamReader.readObject());
@@ -268,8 +288,10 @@ public class GWTFolder_FieldSerializer implements com.google.gwt.user.client.rpc
   public static void serialize(SerializationStreamWriter streamWriter, com.openkm.frontend.client.bean.GWTFolder instance) throws SerializationException {
     streamWriter.writeString(getAuthor(instance));
     streamWriter.writeObject(getCategories(instance));
+    streamWriter.writeString(getCode(instance));
     streamWriter.writeObject(getColumn0(instance));
     streamWriter.writeObject(getColumn1(instance));
+    streamWriter.writeObject(getColumn10(instance));
     streamWriter.writeObject(getColumn2(instance));
     streamWriter.writeObject(getColumn3(instance));
     streamWriter.writeObject(getColumn4(instance));

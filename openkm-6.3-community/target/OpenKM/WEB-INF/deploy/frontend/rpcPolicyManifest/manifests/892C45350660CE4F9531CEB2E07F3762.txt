@@ -1,2 +1,0 @@
-serviceClass: com.openkm.frontend.client.service.OKMSearchService
-path: 5F1EACAE21C6D439D847608BFFC00598.gwt.rpc

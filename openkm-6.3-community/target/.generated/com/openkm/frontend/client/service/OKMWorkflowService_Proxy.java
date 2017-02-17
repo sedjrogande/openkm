@@ -13,7 +13,7 @@ import com.google.gwt.user.client.rpc.impl.RpcStatsContext;
 
 public class OKMWorkflowService_Proxy extends RemoteServiceProxy implements com.openkm.frontend.client.service.OKMWorkflowServiceAsync {
   private static final String REMOTE_SERVICE_INTERFACE_NAME = "com.openkm.frontend.client.service.OKMWorkflowService";
-  private static final String SERIALIZATION_POLICY ="0967239A1F98A0AA9C73BBFFDB6A9DB7";
+  private static final String SERIALIZATION_POLICY ="21B23F795864655ADEA6C912B423EB1B";
   private static final com.openkm.frontend.client.service.OKMWorkflowService_TypeSerializer SERIALIZER = new com.openkm.frontend.client.service.OKMWorkflowService_TypeSerializer();
   
   public OKMWorkflowService_Proxy() {

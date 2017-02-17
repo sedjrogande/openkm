@@ -13,7 +13,7 @@ import com.google.gwt.user.client.rpc.impl.RpcStatsContext;
 
 public class OKMDashboardService_Proxy extends RemoteServiceProxy implements com.openkm.frontend.client.service.OKMDashboardServiceAsync {
   private static final String REMOTE_SERVICE_INTERFACE_NAME = "com.openkm.frontend.client.service.OKMDashboardService";
-  private static final String SERIALIZATION_POLICY ="7706FBF6BF81FA3FAE5A043BB4A08EB4";
+  private static final String SERIALIZATION_POLICY ="359F0481A547FC0548AFEB2064BF278C";
   private static final com.openkm.frontend.client.service.OKMDashboardService_TypeSerializer SERIALIZER = new com.openkm.frontend.client.service.OKMDashboardService_TypeSerializer();
   
   public OKMDashboardService_Proxy() {

@@ -96,6 +96,10 @@ public class Folder extends Composite {
 		tableProperties.setHTML(10, 0, "<b>"+Main.i18n("folder.webdav")+"</b>");
 		tableProperties.setWidget(10, 1, new HTML(""));
 		
+		//Added 17/02/2017/
+		tableProperties.setHTML(11, 0, "<b> Code du dossier </b>");
+		tableProperties.setWidget(10, 1, new HTML(""));
+		
 		tableProperties.getCellFormatter().setVerticalAlignment(8, 0, HasAlignment.ALIGN_TOP);
 		
 		// Sets the tagcloud
@@ -207,6 +211,10 @@ public class Folder extends Composite {
 		tableProperties.setHTML(2, 1, folder.getParentPath());
 		DateTimeFormat dtf = DateTimeFormat.getFormat(Main.i18n("general.date.pattern"));
 		tableProperties.setHTML(3, 1, dtf.format(folder.getCreated())+" "+Main.i18n("folder.by")+" "+folder.getUser().getUsername());
+		
+		// Added 17/02/2017
+		tableProperties.setHTML(11, 1, folder.getCode());
+
 		
 		if (folder.isSubscribed()) {
 			tableProperties.setHTML(4, 1, Main.i18n("folder.subscribed.yes"));

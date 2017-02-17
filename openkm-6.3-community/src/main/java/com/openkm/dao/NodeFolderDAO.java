@@ -44,6 +44,7 @@ import com.openkm.core.ItemExistsException;
 import com.openkm.core.LockException;
 import com.openkm.core.PathNotFoundException;
 import com.openkm.dao.bean.NodeBase;
+import com.openkm.dao.bean.NodeDocument;
 import com.openkm.dao.bean.NodeFolder;
 import com.openkm.dao.bean.NodeMail;
 import com.openkm.module.db.stuff.DbAccessManager;
@@ -208,6 +209,69 @@ public class NodeFolderDAO {
 			
 			initialize(nFld);
 			log.debug("findByPk: {}", nFld);
+			return nFld;
+		} catch (HibernateException e) {
+			throw new DatabaseException(e.getMessage(), e);
+		} finally {
+			HibernateUtil.close(session);
+		}
+	}
+	
+	
+	/**
+	 * Find all folders
+	 * author Mariam SIDIBE
+	 * created 16/02/2017 09:06
+	 */
+	@SuppressWarnings("unchecked")
+	public List<NodeFolder> findAll() throws DatabaseException {
+		log.debug("findAll()");
+		Session session = null;
+		
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			Query q = session.createQuery("from NodeFolder nf where nf.context='okm_root'");
+			List<NodeFolder> ret = q.list();
+			
+			// Security Check
+			SecurityHelper.pruneNodeList(ret);
+			
+			initialize(ret);
+			log.debug("findAll: {}", ret);
+			return ret;
+		} catch (HibernateException e) {
+			throw new DatabaseException(e.getMessage(), e);
+		} finally {
+			HibernateUtil.close(session);
+		}
+	}
+	
+	/**
+	 * Find by ccmCode
+	 * author Mariam SIDIBE
+	 * created 16/02/2017 11:48
+	 */
+	public NodeFolder findByCcmCode(String ccmCode) throws PathNotFoundException, DatabaseException {
+		log.debug("findByPk({})", ccmCode);
+		String qs = "from NodeFolder nf where nf.ccmCode=:ccmCode";
+		Session session = null;
+		
+		
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			Query q = session.createQuery(qs);
+			q.setString("ccmCode", ccmCode);
+			NodeFolder nFld = (NodeFolder) q.setMaxResults(1).uniqueResult();
+			
+			if (nFld == null) {
+				throw new PathNotFoundException(ccmCode);
+			}
+			
+			// Security Check
+			SecurityHelper.checkRead(nFld);
+			
+			initialize(nFld);
+			log.debug("findByCcmCode: {}", nFld);
 			return nFld;
 		} catch (HibernateException e) {
 			throw new DatabaseException(e.getMessage(), e);

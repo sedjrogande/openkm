@@ -13,7 +13,7 @@ import com.google.gwt.user.client.rpc.impl.RpcStatsContext;
 
 public class OKMSearchService_Proxy extends RemoteServiceProxy implements com.openkm.frontend.client.service.OKMSearchServiceAsync {
   private static final String REMOTE_SERVICE_INTERFACE_NAME = "com.openkm.frontend.client.service.OKMSearchService";
-  private static final String SERIALIZATION_POLICY ="5F1EACAE21C6D439D847608BFFC00598";
+  private static final String SERIALIZATION_POLICY ="C388AB7E2E2E4AB64DD72AA0E2A09455";
   private static final com.openkm.frontend.client.service.OKMSearchService_TypeSerializer SERIALIZER = new com.openkm.frontend.client.service.OKMSearchService_TypeSerializer();
   
   public OKMSearchService_Proxy() {

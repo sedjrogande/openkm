@@ -13,7 +13,7 @@ import com.google.gwt.user.client.rpc.impl.RpcStatsContext;
 
 public class OKMPropertyGroupService_Proxy extends RemoteServiceProxy implements com.openkm.frontend.client.service.OKMPropertyGroupServiceAsync {
   private static final String REMOTE_SERVICE_INTERFACE_NAME = "com.openkm.frontend.client.service.OKMPropertyGroupService";
-  private static final String SERIALIZATION_POLICY ="96B7B2BCB1D1ECF643800BBA8980D49B";
+  private static final String SERIALIZATION_POLICY ="F3D4B834A4E018F4214356E0C205D740";
   private static final com.openkm.frontend.client.service.OKMPropertyGroupService_TypeSerializer SERIALIZER = new com.openkm.frontend.client.service.OKMPropertyGroupService_TypeSerializer();
   
   public OKMPropertyGroupService_Proxy() {

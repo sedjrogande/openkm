@@ -1,2 +1,0 @@
-serviceClass: com.openkm.frontend.client.service.OKMDocumentService
-path: 3567AA500A9040486A7B80A90BCF1D4F.gwt.rpc

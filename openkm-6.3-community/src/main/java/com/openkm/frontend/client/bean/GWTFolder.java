@@ -52,6 +52,8 @@ public class GWTFolder implements IsSerializable {
 	private Set<GWTFolder> categories;
 	private Set<String> keywords;
 	private GWTUser user;
+	// Added 17/02/2017
+	private String code;
 	
 	// Extra columns
 	private GWTFormElement column0;
@@ -65,6 +67,25 @@ public class GWTFolder implements IsSerializable {
 	private GWTFormElement column8;
 	private GWTFormElement column9;
 	
+	//Added 17/02/2017/
+	private GWTFormElement column10;
+	
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
+	}
+
+	public GWTFormElement getColumn10() {
+		return column10;
+	}
+
+	public void setColumn10(GWTFormElement column10) {
+		this.column10 = column10;
+	}
+
 	public void initMetadata(String fldPath, boolean hasChildren) {
 		setAuthor("");
 		setCategories(new HashSet<GWTFolder>());

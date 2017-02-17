@@ -1,2 +1,0 @@
-serviceClass: com.openkm.frontend.client.service.OKMTestService
-path: F23E98CBB5C198A8B41CB24023C2A281.gwt.rpc

@@ -1,2 +1,0 @@
-serviceClass: com.openkm.frontend.client.service.OKMWorkspaceService
-path: 1B32D99D1E311A39A7921BEE96A870DA.gwt.rpc

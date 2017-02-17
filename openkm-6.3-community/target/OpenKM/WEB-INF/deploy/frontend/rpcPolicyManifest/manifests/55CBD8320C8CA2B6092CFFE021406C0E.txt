@@ -1,2 +1,0 @@
-serviceClass: com.openkm.frontend.client.service.OKMMassiveService
-path: 35ECAFFDA8E3DA6FE8C1AA4FB7B508BC.gwt.rpc

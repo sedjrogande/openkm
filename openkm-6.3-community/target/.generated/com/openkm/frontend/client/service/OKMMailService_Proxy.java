@@ -13,7 +13,7 @@ import com.google.gwt.user.client.rpc.impl.RpcStatsContext;
 
 public class OKMMailService_Proxy extends RemoteServiceProxy implements com.openkm.frontend.client.service.OKMMailServiceAsync {
   private static final String REMOTE_SERVICE_INTERFACE_NAME = "com.openkm.frontend.client.service.OKMMailService";
-  private static final String SERIALIZATION_POLICY ="B5A4C010C7F60066370E6B1AC0D570F9";
+  private static final String SERIALIZATION_POLICY ="059CA5989C3157220E9F569101BA244F";
   private static final com.openkm.frontend.client.service.OKMMailService_TypeSerializer SERIALIZER = new com.openkm.frontend.client.service.OKMMailService_TypeSerializer();
   
   public OKMMailService_Proxy() {

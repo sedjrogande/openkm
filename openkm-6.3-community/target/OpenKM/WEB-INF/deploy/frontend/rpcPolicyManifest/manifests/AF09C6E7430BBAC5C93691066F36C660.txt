@@ -1,2 +1,0 @@
-serviceClass: com.openkm.frontend.client.service.OKMDashboardService
-path: 7706FBF6BF81FA3FAE5A043BB4A08EB4.gwt.rpc
