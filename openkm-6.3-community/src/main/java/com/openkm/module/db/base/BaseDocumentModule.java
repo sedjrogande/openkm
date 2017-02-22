@@ -176,6 +176,100 @@ public class BaseDocumentModule {
 	}
 	
 	/**
+	 * Add this 20/02/2017
+	 * By AHOUANTCHEDE Herve
+	 */
+	@SuppressWarnings("unchecked")
+	public static NodeDocument createByMigration(String user, String parentPath, NodeBase parentNode, String name, String title, Calendar created,
+			String mimeType, InputStream is, long size, Set<String> keywords, Set<String> categories, Set<NodeProperty> propertyGroups,
+			List<NodeNote> notes) throws PathNotFoundException, AccessDeniedException,
+			ItemExistsException, UserQuotaExceededException, AutomationException, DatabaseException, IOException {
+		
+		// Check user quota
+		UserConfig uc = UserConfigDAO.findByPk(user);
+		ProfileMisc pm = uc.getProfile().getPrfMisc();
+		
+		// System user don't care quotas
+		if (!Config.SYSTEM_USER.equals(user) && pm.getUserQuota() > 0) {
+			long currentQuota = currentQuota = DbUtils.calculateQuota(user);
+			
+			if (currentQuota + size > pm.getUserQuota() * 1024 * 1024) {
+				throw new UserQuotaExceededException(Long.toString(currentQuota + size));
+			}
+		}
+		
+		// AUTOMATION - PRE
+		Map<String, Object> env = new HashMap<String, Object>();
+		env.put(AutomationUtils.PARENT_UUID, parentNode.getUuid());
+		env.put(AutomationUtils.PARENT_PATH, parentPath);
+		env.put(AutomationUtils.PARENT_NODE, parentNode);
+		env.put(AutomationUtils.DOCUMENT_NAME, name);
+		env.put(AutomationUtils.DOCUMENT_MIME_TYPE, mimeType);
+		env.put(AutomationUtils.DOCUMENT_KEYWORDS, keywords);
+		
+		AutomationManager.getInstance().fireEvent(AutomationRule.EVENT_DOCUMENT_CREATE, AutomationRule.AT_PRE, env);
+		parentNode = (NodeBase) env.get(AutomationUtils.PARENT_NODE);
+		name = (String) env.get(AutomationUtils.DOCUMENT_NAME);
+		mimeType = (String) env.get(AutomationUtils.DOCUMENT_MIME_TYPE);
+		keywords = (Set<String>) env.get(AutomationUtils.DOCUMENT_KEYWORDS);
+		
+		// Create and add a new document node
+		NodeDocument documentNode = new NodeDocument();
+		documentNode.setUuid(UUID.randomUUID().toString());
+		documentNode.setContext(parentNode.getContext());
+		documentNode.setParent(parentNode.getUuid());
+		documentNode.setAuthor(user);
+		documentNode.setName(name);
+		documentNode.setTitle(title);
+		documentNode.setMimeType(mimeType);
+		documentNode.setCreated(created != null ? created : Calendar.getInstance());
+		documentNode.setLastModified(documentNode.getCreated());
+		
+		if (Config.STORE_NODE_PATH) {
+			documentNode.setPath(parentNode.getPath() + "/" + name);
+		}
+		
+		// Extended Copy Attributes
+		documentNode.setKeywords(CloneUtils.clone(keywords));
+		documentNode.setCategories(CloneUtils.clone(categories));
+		
+		for (NodeProperty nProp : CloneUtils.clone(propertyGroups)) {
+			nProp.setNode(documentNode);
+			documentNode.getProperties().add(nProp);
+		}
+		
+		// Get parent node auth info
+		Map<String, Integer> userPerms = parentNode.getUserPermissions();
+		Map<String, Integer> rolePerms = parentNode.getRolePermissions();
+		
+		// Always assign all grants to creator
+		if (Config.USER_ASSIGN_DOCUMENT_CREATION) {
+			int allGrants = Permission.ALL_GRANTS;
+			userPerms.put(user, allGrants);
+		}
+		
+		// Set auth info
+		// NOTICE: Pay attention to the need of cloning
+		documentNode.setUserPermissions(CloneUtils.clone(userPerms));
+		documentNode.setRolePermissions(CloneUtils.clone(rolePerms));
+		
+		NodeDocumentDAO.getInstance().create(documentNode, is, size);
+		
+		// Extended Copy Attributes
+		for (NodeNote nNote : CloneUtils.clone(notes)) {
+			BaseNoteModule.create(documentNode.getUuid(), nNote.getAuthor(), nNote.getText());
+		}
+		
+		// AUTOMATION - POST
+		env.put(AutomationUtils.DOCUMENT_NODE, documentNode);
+		AutomationManager.getInstance().fireEvent(AutomationRule.EVENT_DOCUMENT_CREATE, AutomationRule.AT_POST, env);
+		
+		
+		
+		return documentNode;
+	}
+	
+	/**
 	 * Get folder properties
 	 */
 	public static Document getProperties(String user, NodeDocument nDocument) throws PathNotFoundException, DatabaseException {

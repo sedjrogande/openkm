@@ -274,6 +274,155 @@ public class DbDocumentModule implements DocumentModule {
 		return newDocument;
 	}
 	
+	
+	/*
+	 * Added this 20/02/2017
+	 * By Herve AHOUANTCHEDE
+	 */
+	public static Document createByMigration(String token, Document doc, InputStream is, long size)
+			throws UnsupportedMimeTypeException, FileSizeExceededException, UserQuotaExceededException, VirusDetectedException,
+			ItemExistsException, PathNotFoundException, AccessDeniedException, RepositoryException, IOException, DatabaseException,
+			ExtensionException, AutomationException {
+
+		System.out.println("Begin of createdByMigration");
+		long begin = System.currentTimeMillis();
+		Document newDocument = null;
+		Authentication auth = null, oldAuth = null;
+		
+		if (Config.SYSTEM_READONLY) {
+			throw new AccessDeniedException("System is in read-only mode");
+		}
+		
+		if (!PathUtils.checkPath(doc.getPath())) {
+			throw new RepositoryException("Invalid path: " + doc.getPath());
+		}
+		
+		String parentPath = PathUtils.getParent(doc.getPath());
+		String name = PathUtils.getName(doc.getPath());
+		
+		// Add to KEA - must have the same extension
+		int idx = name.lastIndexOf('.');
+		String fileExtension = idx > 0 ? name.substring(idx) : ".tmp";
+		File tmp = File.createTempFile("okm", fileExtension);
+		
+		try {
+			if (token == null) {
+				auth = PrincipalUtils.getAuthentication();
+			} else {
+				oldAuth = PrincipalUtils.getAuthentication();
+				auth = PrincipalUtils.getAuthenticationByToken(token);
+			}
+			
+						
+			// Escape dangerous chars in name
+			name = PathUtils.escape(name);
+			
+			if (!name.isEmpty()) {
+				doc.setPath(parentPath + "/" + name);
+				
+				// Check file restrictions
+				String mimeType = MimeTypeConfig.mimeTypes.getContentType(name.toLowerCase());
+				doc.setMimeType(mimeType);
+				
+				if (Config.RESTRICT_FILE_MIME && MimeTypeDAO.findByName(mimeType) == null) {
+					String usr = doc.getAuthor();
+					UserActivity.log(usr, "ERROR_UNSUPPORTED_MIME_TYPE", null, doc.getPath(), mimeType);
+					throw new UnsupportedMimeTypeException(mimeType);
+				}
+				
+				// Restrict for extension
+				if (!Config.RESTRICT_FILE_NAME.isEmpty()) {
+					StringTokenizer st = new StringTokenizer(Config.RESTRICT_FILE_NAME, Config.LIST_SEPARATOR);
+					
+					while (st.hasMoreTokens()) {
+						String wc = st.nextToken().trim();
+						String re = ConfigUtils.wildcard2regexp(wc);
+						
+						if (Pattern.matches(re, name)) {
+							String usr = doc.getAuthor();
+							UserActivity.log(usr, "ERROR_UNSUPPORTED_MIME_TYPE", null, doc.getPath(), mimeType);
+							throw new UnsupportedMimeTypeException(mimeType);
+						}
+					}
+				}
+				
+				// Manage temporary files
+				byte[] buff = new byte[4 * 1024];
+				FileOutputStream fos = new FileOutputStream(tmp);
+				int read;
+				
+				while ((read = is.read(buff)) != -1) {
+					fos.write(buff, 0, read);
+				}
+		
+				
+				fos.flush();
+				fos.close();
+				is.close();
+				is = new FileInputStream(tmp);
+				
+				if (!Config.SYSTEM_ANTIVIR.equals("")) {
+					String info = VirusDetection.detect(tmp);
+					
+					if (info != null) {
+						String usr = doc.getAuthor();
+						UserActivity.log(usr, "ERROR_VIRUS_DETECTED", null, doc.getPath(), info);
+						throw new VirusDetectedException(info);
+					}
+				}
+				
+				String parentUuid = NodeBaseDAO.getInstance().getUuidFromPath(parentPath);
+				NodeBase parentNode = NodeBaseDAO.getInstance().findByPk(parentUuid);
+				
+				// AUTOMATION - PRE
+				// INSIDE BaseDocumentModule.create
+				
+				// Create node
+				Set<String> keywords = doc.getKeywords() != null ? doc.getKeywords() : new HashSet<String>();
+				NodeDocument docNode = BaseDocumentModule.createByMigration(doc.getAuthor(), parentPath, parentNode, name, doc.getTitle(),
+						doc.getCreated(), mimeType, is, size, keywords, new HashSet<String>(), new HashSet<NodeProperty>(),
+						new ArrayList<NodeNote>() );
+				
+				// AUTOMATION - POST
+				// INSIDE BaseDocumentModule.create
+				
+				// Set returned folder properties
+				newDocument = BaseDocumentModule.getProperties(auth.getName(), docNode);
+				
+				
+				
+				if (doc.getAuthor() == null) {
+					// Check subscriptions
+					BaseNotificationModule.checkSubscriptions(docNode, auth.getName(), "CREATE_DOCUMENT", null);
+					
+					// Activity log
+					UserActivity.log(auth.getName(), "CREATE_DOCUMENT", docNode.getUuid(), doc.getPath(), mimeType + ", " + size);
+				} else {
+					// Check subscriptions
+					BaseNotificationModule.checkSubscriptions(docNode, doc.getAuthor(), "CREATE_MAIL_ATTACHMENT", null);
+					
+					// Activity log
+					UserActivity.log(doc.getAuthor(), "CREATE_MAIL_ATTACHMENT", docNode.getUuid(), doc.getPath(), mimeType + ", " + size);
+				}
+			} else {
+				throw new RepositoryException("Invalid document name");
+			}
+		} finally {
+			IOUtils.closeQuietly(is);
+			org.apache.commons.io.FileUtils.deleteQuietly(tmp);
+			
+			if (token != null) {
+				PrincipalUtils.setAuthentication(oldAuth);
+			}
+		}
+		
+		log.trace("create.Time: {}", System.currentTimeMillis() - begin);
+		log.debug("create: {}", newDocument);
+		return newDocument;
+	}
+	
+	
+	
 	@Override
 	public void delete(String token, String docId) throws LockException, PathNotFoundException, AccessDeniedException, RepositoryException,
 			DatabaseException {
