@@ -253,14 +253,14 @@ public class NodeFolderDAO {
 	 */
 	public NodeFolder findByCcmCode(String ccmCode) throws PathNotFoundException, DatabaseException {
 		log.debug("findByPk({})", ccmCode);
-		String qs = "from NodeFolder nf where upper(nf.ccmCode)=:ccmCode";
+		String qs = "from NodeFolder nf where nf.ccmCode=:ccmCode";
 		Session session = null;
 		
 		
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();
 			Query q = session.createQuery(qs);
-			q.setString("ccmCode", ccmCode.toUpperCase());
+			q.setString("ccmCode", ccmCode);
 			NodeFolder nFld = (NodeFolder) q.setMaxResults(1).uniqueResult();
 			
 			if (nFld == null) {
