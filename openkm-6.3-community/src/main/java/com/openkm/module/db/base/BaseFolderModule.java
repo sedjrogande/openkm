@@ -64,6 +64,7 @@ import com.openkm.dao.bean.NodeFolder;
 import com.openkm.dao.bean.NodeMail;
 import com.openkm.dao.bean.NodeNote;
 import com.openkm.dao.bean.NodeProperty;
+import com.openkm.frontend.client.widget.ErrorPopup;
 import com.openkm.module.common.CommonWorkflowModule;
 import com.openkm.module.db.stuff.DbAccessManager;
 import com.openkm.module.db.stuff.SecurityHelper;
@@ -90,26 +91,36 @@ public class BaseFolderModule {
 		// Check if the folder name entered contains the characters () then 
 		// Split the folder name in order to retrieve the keywork
 		if (name.contains("(") && name.contains(")")){
-			String key = name.substring(name.indexOf("(") + 1, name.indexOf(")"));
+			String key = name.substring(name.indexOf("(") + 1, name.indexOf(")")).trim();
 			name = name.substring(0, name.indexOf("("));
 			folderNode.setCcmCode(key);
+			folderNode.setName(name);
+			folderNode.setCreated(created != null ? created : Calendar.getInstance());
+			
+			if (Config.STORE_NODE_PATH) {
+				folderNode.setPath(parentFolder.getPath() + "/" + name);
+			}
+			
+			// Extended Copy Attributes
+			folderNode.setKeywords(CloneUtils.clone(keywords));
+			folderNode.setCategories(CloneUtils.clone(categories));
+			
+			for (NodeProperty nProp : CloneUtils.clone(propertyGroups)) {
+				nProp.setNode(folderNode);
+				folderNode.getProperties().add(nProp);
+			}
+			/* ModifiÃ© par Mariam SIDIBE
+			 * 22/02/2017
+			 * Generation d'erreur si on ne met pas de parenthÃ¨ses a la creation d'un dossier
+			 */
+		}else{
+			
+			ErrorPopup error = null;
+			error.show("Obligation de mettre le code du dossier entre parenthèses!");
+			
 		}
 		
-		folderNode.setName(name);
-		folderNode.setCreated(created != null ? created : Calendar.getInstance());
 		
-		if (Config.STORE_NODE_PATH) {
-			folderNode.setPath(parentFolder.getPath() + "/" + name);
-		}
-		
-		// Extended Copy Attributes
-		folderNode.setKeywords(CloneUtils.clone(keywords));
-		folderNode.setCategories(CloneUtils.clone(categories));
-		
-		for (NodeProperty nProp : CloneUtils.clone(propertyGroups)) {
-			nProp.setNode(folderNode);
-			folderNode.getProperties().add(nProp);
-		}
 		
 		// Get parent node auth info
 		Map<String, Integer> userPerms = parentFolder.getUserPermissions();
@@ -135,7 +146,65 @@ public class BaseFolderModule {
 		
 		return folderNode;
 	}
+
+	/*
+	 * Add this 23/02/2017
+	 * By Herve AHOUANTCHEDE
+	 */
 	
+	public static NodeFolder createByMigration(String user, NodeFolder parentFolder, String name, Calendar created, Set<String> keywords,
+			Set<String> categories, Set<NodeProperty> propertyGroups, List<NodeNote> notes) throws PathNotFoundException,
+			AccessDeniedException, ItemExistsException, DatabaseException {
+		
+		// Create and add a new folder node
+		NodeFolder folderNode = new NodeFolder();
+		folderNode.setUuid(UUID.randomUUID().toString());
+		folderNode.setContext(parentFolder.getContext());
+		folderNode.setParent(parentFolder.getUuid());
+		folderNode.setAuthor(user);
+		folderNode.setName(name);
+		folderNode.setCreated(created != null ? created : Calendar.getInstance());
+		
+		if (Config.STORE_NODE_PATH) {
+			folderNode.setPath(parentFolder.getPath() + "/" + name);
+		}
+		
+		// Extended Copy Attributes
+		folderNode.setKeywords(CloneUtils.clone(keywords));
+		folderNode.setCategories(CloneUtils.clone(categories));
+		
+		for (NodeProperty nProp : CloneUtils.clone(propertyGroups)) {
+			nProp.setNode(folderNode);
+			folderNode.getProperties().add(nProp);
+		}
+		
+
+		
+		// Get parent node auth info
+		Map<String, Integer> userPerms = parentFolder.getUserPermissions();
+		Map<String, Integer> rolePerms = parentFolder.getRolePermissions();
+		
+		// Always assign all grants to creator
+		if (Config.USER_ASSIGN_DOCUMENT_CREATION) {
+			int allGrants = Permission.ALL_GRANTS;
+			userPerms.put(user, allGrants);
+		}
+		
+		// Set auth info
+		// NOTICE: Pay attention to the need of cloning
+		folderNode.setUserPermissions(CloneUtils.clone(userPerms));
+		folderNode.setRolePermissions(CloneUtils.clone(rolePerms));
+		
+		NodeFolderDAO.getInstance().createByMigration(folderNode);
+		
+		// Extended Copy Attributes
+		for (NodeNote nNote : CloneUtils.clone(notes)) {
+			BaseNoteModule.create(folderNode.getUuid(), nNote.getAuthor(), nNote.getText());
+		}
+		
+		return folderNode;
+	}
+
 	/**
 	 * Get folder properties
 	 */

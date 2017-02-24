@@ -146,6 +146,84 @@ public class DbFolderModule implements FolderModule {
 		return newFolder;
 	}
 	
+	
+	/*
+	 * Added this 23/02/2017
+	 * By Herve AHOUANTCHEDE
+	 */
+	@Override
+	public Folder createByMigration(String token, Folder fld) throws PathNotFoundException, ItemExistsException, AccessDeniedException,
+			RepositoryException, DatabaseException, ExtensionException, AutomationException {
+		log.debug("create({}, {})", token, fld);
+		Folder newFolder = null;
+		Authentication auth = null, oldAuth = null;
+		
+		if (Config.SYSTEM_READONLY) {
+			throw new AccessDeniedException("System is in read-only mode");
+		}
+		
+		if (!PathUtils.checkPath(fld.getPath())) {
+			throw new RepositoryException("Invalid path: " + fld.getPath());
+		}
+		
+		try {
+			if (token == null) {
+				auth = PrincipalUtils.getAuthentication();
+			} else {
+				oldAuth = PrincipalUtils.getAuthentication();
+				auth = PrincipalUtils.getAuthenticationByToken(token);
+			}
+			
+			String name = PathUtils.getName(fld.getPath());
+			String parentPath = PathUtils.getParent(fld.getPath());
+			String parentUuid = NodeBaseDAO.getInstance().getUuidFromPath(parentPath);
+			NodeFolder parentFolder = NodeFolderDAO.getInstance().findByPk(parentUuid);
+			
+			// Escape dangerous chars in name
+			name = PathUtils.escape(name);
+			
+			if (!name.isEmpty()) {
+				fld.setPath(parentPath + "/" + name);
+				
+				// AUTOMATION - PRE
+				Map<String, Object> env = new HashMap<String, Object>();
+				env.put(AutomationUtils.PARENT_UUID, parentUuid);
+				env.put(AutomationUtils.PARENT_PATH, parentPath);
+				env.put(AutomationUtils.PARENT_NODE, parentFolder);
+				AutomationManager.getInstance().fireEvent(AutomationRule.EVENT_FOLDER_CREATE, AutomationRule.AT_PRE, env);
+				parentFolder = (NodeFolder) env.get(AutomationUtils.PARENT_NODE);
+				
+				// Create node
+				NodeFolder fldNode = BaseFolderModule.createByMigration(auth.getName(), parentFolder, name, fld.getCreated(), new HashSet<String>(),
+						new HashSet<String>(), new HashSet<NodeProperty>(), new ArrayList<NodeNote>());
+				
+				// AUTOMATION - POST
+				env.put(AutomationUtils.FOLDER_NODE, fldNode);
+				AutomationManager.getInstance().fireEvent(AutomationRule.EVENT_FOLDER_CREATE, AutomationRule.AT_POST, env);
+				
+				// Set returned folder properties
+				newFolder = BaseFolderModule.getProperties(auth.getName(), fldNode);
+				
+				// Activity log
+				UserActivity.log(auth.getName(), "CREATE_FOLDER", fldNode.getUuid(), fld.getPath(), null);
+			} else {
+				throw new RepositoryException("Invalid folder name");
+			}
+		} catch (DatabaseException e) {
+			throw e;
+			// } catch (ExtensionException e) {
+			// throw e;
+		} finally {
+			if (token != null) {
+				PrincipalUtils.setAuthentication(oldAuth);
+			}
+		}
+		
+		log.debug("create: {}", newFolder);
+		return newFolder;
+	}
+	
+	
 	@Override
 	public Folder getProperties(String token, String fldId) throws PathNotFoundException, RepositoryException, DatabaseException {
 		log.debug("getProperties({}, {})", token, fldId);

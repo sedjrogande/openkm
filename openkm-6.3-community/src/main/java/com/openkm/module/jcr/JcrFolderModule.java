@@ -34,6 +34,7 @@ import org.apache.jackrabbit.api.XASession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.openkm.automation.AutomationException;
 import com.openkm.bean.ContentInfo;
 import com.openkm.bean.ExtendedAttributes;
 import com.openkm.bean.Folder;
@@ -683,5 +684,14 @@ public class JcrFolderModule implements FolderModule {
 		
 		log.debug("getPath: {}", path);
 		return path;
+	}
+
+	@Override
+	public Folder createByMigration(String token, Folder fld)
+			throws PathNotFoundException, ItemExistsException,
+			AccessDeniedException, RepositoryException, DatabaseException,
+			ExtensionException, AutomationException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

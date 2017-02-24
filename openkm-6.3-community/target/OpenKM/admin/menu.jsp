@@ -121,6 +121,13 @@
           <img src="img/toolbar/utilities.png">
          </a>
       </li>
+      
+      <!-- Added by Mariam Fode SIDIBE -->
+      <li>
+        <a target="frame" href="ccm_log.jsp" title="Logs">
+          <img src="img/toolbar/log.png" width="32" height="32">
+         </a>
+      </li>
     </c:if>
     <script type="text/javascript">
       // Identify if being loaded inside an iframe

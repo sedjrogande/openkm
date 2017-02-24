@@ -525,7 +525,7 @@ public class Config {
 	
 	// Logo icons and login texts
 	public static String TEXT_BANNER = "&nbsp;";
-	public static String TEXT_WELCOME = "<p>Welcome to OpenKM !</p><p>Use a valid username and password to access to OpenKM user Desktop.</p>";
+	public static String TEXT_WELCOME = "<p>Bienvenue sur OpenKM de la Cour Constitutionnelle du Mali !!!</p>";
 	public static String TEXT_TITLE = "OpenKM";
 	public static ConfigStoredFile LOGO_TINY;
 	public static ConfigStoredFile LOGO_LOGIN;
@@ -564,7 +564,7 @@ public class Config {
 	// Injection
 	public static String INJECTION_DIR = "C:\\openkm";
 	public static String BACKUP_DIR = "C:\\backup";
-	public static String LOGS_DIR = "C:\\log";
+	public static String LOGS_DIR = Config.HOME_DIR + File.separator + "webapps" + File.separator + Config.CONTEXT + File.separator + "admin" + File.separator + "log";
 	
 	// Misc
 	public static int SESSION_EXPIRATION = 1800; // 30 mins (session.getMaxInactiveInterval())

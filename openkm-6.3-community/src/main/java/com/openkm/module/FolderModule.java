@@ -54,6 +54,22 @@ public interface FolderModule {
 			AccessDeniedException, RepositoryException, DatabaseException, ExtensionException, AutomationException;
 	
 	/**
+	 * Added this 23/02/2017
+	 * By Herve AHOUANTCHEDE
+	 * Create a new folder in the repository by migration.
+	 * 
+	 * @param fld A folder object with the new folder properties.
+	 * @return A folder object with the new created folder properties.
+	 * @throws PathNotFoundException If the parent folder doesn't exist.
+	 * @throws ItemExistsException If there is already a folder in the repository with the same name in the same path.
+	 * @throws AccessDeniedException If there is any security problem: you can't modify the parent folder because of
+	 *         lack of permissions.
+	 * @throws RepositoryException If there is any general repository problem.
+	 */
+	public Folder createByMigration(String token, Folder fld) throws PathNotFoundException, ItemExistsException,
+	AccessDeniedException, RepositoryException, DatabaseException, ExtensionException, AutomationException;
+	
+	/**
 	 * Obtains properties from a previously created folder.
 	 * 
 	 * @param fldPath The path that identifies an unique folder.
